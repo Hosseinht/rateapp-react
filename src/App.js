@@ -4,7 +4,7 @@ import Header from "./components/Header";
 function App() {
     return (
         <>
-            <Header bgColor='blue' textColor="red" text="Hello There"/>
+            <Header/>
             <div>
                 <h1>This is my react app</h1>
             </div>

@@ -15,15 +15,19 @@ function Header({text, bgColor, textColor}) {
 }
 
 //
-// Header.defaultProps = {
-//     text: 'Hello There'
-// }
+Header.defaultProps = {
+    text: 'Hello There',
+    bgColor: 'rgba(0,0,0,0.4)',
+    textColor: '#ff6a95'
+}
+// if we don't pass props from App component Header component will use this default props
 
-// eslint-disable-next-line react/no-typos
+
 Header.propTypes = {
     text: PropTypes.string,
     bgColor:PropTypes.string,
-    
+    textColor:PropTypes.string,
+
 }
 
 export default Header;
