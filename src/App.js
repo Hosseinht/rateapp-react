@@ -1,14 +1,17 @@
 import Header from "./components/Header";
-import RateItem from "./components/RateItem";
+import RateList from "./components/RateList";
+import RateData from "./data/RateData";
+import {useState} from "react";
 
 
 function App() {
+    const [rateData, setRateData] = useState(RateData)
+
     return (
         <>
             <Header/>
-            <RateItem/>
-            <div>
-                <h1>This is my react app</h1>
+            <div className='container'>
+                <RateList rateData={rateData}/>
             </div>
         </>
     );
