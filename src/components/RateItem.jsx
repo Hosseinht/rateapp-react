@@ -1,10 +1,14 @@
+import Card from "./shared/Card";
+import {useState} from "react";
 
 const RateItem = ({item}) => {
+    const [reverse, setReverse] = useState(false)
     return (
-        <div className='card'>
+        <Card reverse={reverse}>
             <div className="num-display">{item.rating}</div>
             <div className="text-display">{item.text}</div>
-        </div>
+            <button onClick={() => setReverse(!reverse)}>click</button>
+        </Card>
     );
 };
 
