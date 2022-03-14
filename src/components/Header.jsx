@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
+import Card from "./shared/Card";
+import {useState} from "react";
 
-function Header({text, bgColor, textColor}) {
+function Header({text, bgColor, textColor, reverse, setReverse}) {
     const headerStyles = {
         backgroundColor : bgColor,
         color : textColor,
     }
+
     return (
         <header style={headerStyles}>
             <div className="container">
                 <h2>{text}</h2>
+                <button onClick={() => setReverse(!reverse)}>click</button>
             </div>
         </header>
     );
