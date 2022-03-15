@@ -3,7 +3,7 @@ import RateItem from "./RateItem";
 
 const RateList = ({rateData , reverse,handleDelete}) => {
     if (!rateData || rateData.length === 0) {
-        return <p>No rate data yet</p>
+        return <p>No rate yet</p>
     }
     return (
         <div className='feedback-list'>

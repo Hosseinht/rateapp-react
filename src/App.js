@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import RateList from "./components/RateList";
 import RateData from "./data/RateData";
 import {useState} from "react";
+import RateStats from "./components/RateStats";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <>
             <Header reverse={reverse} setReverse={setReverse}/>
             <div className='container'>
+                <RateStats rateData={rateData}/>
                 <RateList
                     reverse={reverse}
                     rateData={rateData}
