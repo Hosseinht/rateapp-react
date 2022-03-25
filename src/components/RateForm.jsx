@@ -1,12 +1,13 @@
 import {useState} from "react";
 import Card from "./shared/Card";
+import Button from "./shared/Button";
 
 // when we have a form we are gonna have a piece of state for each input in that form
 const RateForm = () => {
     const [text, setText] = useState('')
 
     const handleTextChange = (e) => {
-        console.log(e.target.value)
+        setText(e.target.value)
     }
 
     return (
@@ -20,7 +21,7 @@ const RateForm = () => {
                         placeholder='Write a review'
                         value={text}
                     />
-                    <button type="submit">Send</button>
+                    <Button type='submit'>Send</Button>
                 </div>
             </form>
         </Card>
