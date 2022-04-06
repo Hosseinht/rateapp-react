@@ -8,6 +8,7 @@ import RateStats from "./components/RateStats";
 import RateForm from "./components/RateForm";
 import AboutPage from "./pages/AboutPage";
 import AboutIconLink from "./components/AboutIconLink";
+import RateProvider from "./context/RateContext";
 
 
 function App() {
@@ -28,28 +29,29 @@ function App() {
     }
 
     return (
-        <Router>
-            <Header reverse={reverse} setReverse={setReverse}/>
-            <div className='container'>
-                <Routes>
-                    <Route exact path='/' element={
-                        <>
-                            <RateForm handleAdd={addRate}/>
-                            <RateStats rateData={rateData}/>
-                            <RateList
-                                reverse={reverse}
-                                rateData={rateData}
-                                handleDelete={deleteRateData}
-                            />
-                        </>
-                    }>
-
-                    </Route>
-                    <Route path='/about' element={<AboutPage/>}/>
-                </Routes>
-                <AboutIconLink/>
-            </div>
-        </Router>
+        <RateProvider>
+            <Router>
+                <Header reverse={reverse} setReverse={setReverse}/>
+                <div className='container'>
+                    <Routes>
+                        <Route exact path='/' element={
+                            <>
+                                <RateForm handleAdd={addRate}/>
+                                <RateStats rateData={rateData}/>
+                                <RateList
+                                    reverse={reverse}
+                                    rateData={rateData}
+                                    handleDelete={deleteRateData}
+                                />
+                            </>
+                        }>
+                        </Route>
+                        <Route path='/about' element={<AboutPage/>}/>
+                    </Routes>
+                    <AboutIconLink/>
+                </div>
+            </Router>
+        </RateProvider>
     );
 }
 
