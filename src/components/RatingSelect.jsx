@@ -8,6 +8,7 @@ const RatingSelect = ({select}) => {
         // what is +? typeof currentTarget is string but we need number
         // with + we turn that string to a number
         select(+e.currentTarget.value)
+        // we need to get this value up in the form because that's where we're actually going to submit the form
     }
     return (
         <ul className='rating'>

@@ -4,7 +4,7 @@ import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 
 // when we have a form we are gonna have a piece of state for each input in that form
-const RateForm = ({select}) => {
+const RateForm = ({select, handleAdd}) => {
     // whatever we type in input we want it to put in tex. so onChange={handleTextChange}
 
     const [text, setText] = useState('')
@@ -29,9 +29,28 @@ const RateForm = ({select}) => {
         setText(e.target.value)
     }
 
+    // Event handler for submitting form
+    const handleSubmit = (e) => {
+        // default behaviour is submitting to the actual file
+        e.preventDefault()
+        // even thou we manage it in handleTextChange, client can do
+        // something like un disable the button using tools in chrome
+        if (text.trim().length > 10) {
+            const newRate = {
+                // text:text,
+                // rating:rating
+                text,
+                rating
+            }
+            // now we need to call a function in app level
+            handleAdd(newRate)
+            setText('')
+        }
+    }
+
     return (
         <Card>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h2>How would you rate your service with us</h2>
                 <RatingSelect select={(rating) => setRating(rating)}/>
                 <div className="input-group">
@@ -52,3 +71,4 @@ const RateForm = ({select}) => {
 };
 
 export default RateForm;
+

@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from 'uuid'
 import Header from "./components/Header";
 import RateList from "./components/RateList";
 import RateData from "./data/RateData";
@@ -17,11 +18,17 @@ function App() {
             ))
     }
 
+    const addRate = (newRate) => {
+        newRate.id = uuidv4()
+        setRateData([newRate, ...rateData])
+        // state is immutable so we can't just push on to it we need to make a copy of it
+    }
+
     return (
         <>
             <Header reverse={reverse} setReverse={setReverse}/>
             <div className='container'>
-                <RateForm/>
+                <RateForm handleAdd={addRate}/>
                 <RateStats rateData={rateData}/>
                 <RateList
                     reverse={reverse}
