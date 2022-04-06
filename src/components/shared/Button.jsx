@@ -22,3 +22,8 @@ Button.propTypes = {
 }
 
 export default Button;
+
+// Children: text for the button
+// Version: Primary or Secondary
+// Type: Submit or ...
+// isDisabled; True or false
