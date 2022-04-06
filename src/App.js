@@ -1,10 +1,12 @@
 import {v4 as uuidv4} from 'uuid'
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
 import RateList from "./components/RateList";
 import RateData from "./data/RateData";
 import {useState} from "react";
 import RateStats from "./components/RateStats";
 import RateForm from "./components/RateForm";
+import AboutPage from "./pages/AboutPage";
 
 
 function App() {
@@ -25,18 +27,27 @@ function App() {
     }
 
     return (
-        <>
+        <Router>
             <Header reverse={reverse} setReverse={setReverse}/>
             <div className='container'>
-                <RateForm handleAdd={addRate}/>
-                <RateStats rateData={rateData}/>
-                <RateList
-                    reverse={reverse}
-                    rateData={rateData}
-                    handleDelete={deleteRateData}
-                />
+                <Routes>
+                    <Route exact path='/' element={
+                        <>
+                            <RateForm handleAdd={addRate}/>
+                            <RateStats rateData={rateData}/>
+                            <RateList
+                                reverse={reverse}
+                                rateData={rateData}
+                                handleDelete={deleteRateData}
+                            />
+                        </>
+                    }>
+
+                    </Route>
+                    <Route path='/about' element={<AboutPage/>}/>
+                </Routes>
             </div>
-        </>
+        </Router>
     );
 }
 
