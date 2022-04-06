@@ -1,12 +1,14 @@
 import {useState} from "react";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
+import RatingSelect from "./RatingSelect";
 
 // when we have a form we are gonna have a piece of state for each input in that form
-const RateForm = () => {
+const RateForm = ({select}) => {
     // whatever we type in input we want it to put in tex. so onChange={handleTextChange}
 
     const [text, setText] = useState('')
+    const [rating, setRating] = useState(10)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
 
@@ -31,6 +33,7 @@ const RateForm = () => {
         <Card>
             <form>
                 <h2>How would you rate your service with us</h2>
+                <RatingSelect select={(rating) => setRating(rating)}/>
                 <div className="input-group">
                     <input
                         onChange={handleTextChange}
