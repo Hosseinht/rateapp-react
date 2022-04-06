@@ -7,6 +7,7 @@ import {useState} from "react";
 import RateStats from "./components/RateStats";
 import RateForm from "./components/RateForm";
 import AboutPage from "./pages/AboutPage";
+import AboutIconLink from "./components/AboutIconLink";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                     </Route>
                     <Route path='/about' element={<AboutPage/>}/>
                 </Routes>
+                <AboutIconLink/>
             </div>
         </Router>
     );
