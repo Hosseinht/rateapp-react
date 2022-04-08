@@ -1,8 +1,13 @@
+import {useContext} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import RateItem from "./RateItem";
+import RateContext from "../context/RateContext";
 
 
-const RateList = ({rateData, reverse, handleDelete}) => {
+const RateList = ({ reverse, handleDelete}) => {
+    const {rateData} = useContext(RateContext)
+    console.log(rateData)
+
     if (!rateData || rateData.length === 0) {
         return <p>No rate yet</p>
     }

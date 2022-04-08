@@ -1,6 +1,8 @@
-import PropTypes from "prop-types";
+import RateContext from "../context/RateContext";
+import {useContext} from "react";
 
-const RateStats = ({rateData}) => {
+const RateStats = () => {
+    const {rateData} = useContext(RateContext)
     // Calculate rating average
     let average = rateData.reduce((acc, cur) => {
         return acc + cur.rating
@@ -19,9 +21,5 @@ const RateStats = ({rateData}) => {
         </div>
     );
 };
-
-RateStats.prototype = {
-    rateData: PropTypes.array.isRequired
-}
 
 export default RateStats;

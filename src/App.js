@@ -8,7 +8,7 @@ import RateStats from "./components/RateStats";
 import RateForm from "./components/RateForm";
 import AboutPage from "./pages/AboutPage";
 import AboutIconLink from "./components/AboutIconLink";
-import RateProvider from "./context/RateContext";
+import {RateProvider} from "./context/RateContext";
 
 
 function App() {
@@ -37,10 +37,9 @@ function App() {
                         <Route exact path='/' element={
                             <>
                                 <RateForm handleAdd={addRate}/>
-                                <RateStats rateData={rateData}/>
+                                <RateStats/>
                                 <RateList
                                     reverse={reverse}
-                                    rateData={rateData}
                                     handleDelete={deleteRateData}
                                 />
                             </>
