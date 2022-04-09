@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import Card from "./shared/Card";
-import {useState} from "react";
+import {useContext} from "react";
+import RateContext from "../context/RateContext";
 
-function Header({text, bgColor, textColor, reverse, setReverse}) {
+function Header({text, bgColor, textColor}) {
+    const {reverse, setReverse} = useContext(RateContext)
     const headerStyles = {
         backgroundColor : bgColor,
         color : textColor,

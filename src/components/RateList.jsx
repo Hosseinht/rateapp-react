@@ -4,7 +4,7 @@ import RateItem from "./RateItem";
 import RateContext from "../context/RateContext";
 
 
-const RateList = ({ reverse, handleDelete}) => {
+const RateList = () => {
     const {rateData} = useContext(RateContext)
     console.log(rateData)
 
@@ -22,10 +22,8 @@ const RateList = ({ reverse, handleDelete}) => {
                         exit={{opacity: 0}}
                     >
                         <RateItem
-                            reverse={reverse}
                             key={item.id}
                             item={item}
-                            handleDelete={handleDelete}
                         />
                     </motion.div>
                 ))}

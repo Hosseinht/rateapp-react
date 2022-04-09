@@ -1,20 +1,51 @@
 import {createContext, useState} from "react";
+import {v4 as uuidv4} from "uuid";
 
 
 const RateContext = createContext()
 
 export const RateProvider = ({children}) => {
+    const [reverse, setReverse] = useState(false)
     const [rateData, setRateData] = useState([
         {
             id: 1,
-            text: "This item is from context",
-            rating: 10
-        }
+            rating: 10,
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
+        },
+        {
+            id: 2,
+            rating: 9,
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
+        },
+        {
+            id: 3,
+            rating: 8,
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
+        },
     ])
+
+    const deleteRateData = (id) => {
+        if (window.confirm('Are you sure you want to delete?'))
+            setRateData(rateData.filter((item) =>
+                item.id !== id
+            ))
+    }
+
+    const addRate = (newRate) => {
+        newRate.id = uuidv4()
+        setRateData([newRate, ...rateData])
+        // state is immutable so we can't just push on to it we need to make a copy of it
+    }
+
+
     return (
         <RateContext.Provider value={{
             // rateData:rateData,
             rateData,
+            deleteRateData,
+            addRate,
+            reverse,
+            setReverse
         }}>
             {/*whatever we wrap. which is the children that we passed in*/}
             {children}

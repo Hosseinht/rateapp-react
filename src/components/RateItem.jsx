@@ -1,8 +1,10 @@
 import Card from "./shared/Card";
 import {FaTimes} from "react-icons/fa";
-import {useState} from "react";
+import {useContext} from "react";
+import RateContext from "../context/RateContext";
 
-const RateItem = ({item, reverse, handleDelete}) => {
+const RateItem = ({item}) => {
+    const {deleteRateData, reverse} = useContext(RateContext)
     // const handleClick = (gooz) => {
     //     console.log(gooz)
     //     // gooz is id
@@ -10,7 +12,7 @@ const RateItem = ({item, reverse, handleDelete}) => {
     return (
         <Card reverse={reverse}>
             <div className="num-display">{item.rating}</div>
-            <button onClick={() => handleDelete(item.id)} className="close">
+            <button onClick={() => deleteRateData(item.id)} className="close">
                 <FaTimes color='purple'/>
             </button>
             <div className="text-display">{item.text}</div>
@@ -20,3 +22,24 @@ const RateItem = ({item, reverse, handleDelete}) => {
 };
 
 export default RateItem;
+
+
+// const RateItem = ({item, reverse, handleDelete}) => {
+//     // const handleClick = (gooz) => {
+//     //     console.log(gooz)
+//     //     // gooz is id
+//     // }
+//     return (
+//         <Card reverse={reverse}>
+//             <div className="num-display">{item.rating}</div>
+//             <button onClick={() => handleDelete(item.id)} className="close">
+//                 <FaTimes color='purple'/>
+//             </button>
+//             <div className="text-display">{item.text}</div>
+//             {/*<button onClick={() => setReverse(!reverse)}>click</button>*/}
+//         </Card>
+//     );
+// };
+//
+// export default RateItem;
+
