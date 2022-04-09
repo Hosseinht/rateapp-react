@@ -1,4 +1,4 @@
-import {createContext, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 
 
@@ -24,6 +24,12 @@ export const RateProvider = ({children}) => {
         },
     ])
 
+    const [rateEdit, setRateEdit] = useState({
+        item: {},
+        // whenever we click on an item the data of that item will go on to this item here
+        edit: false
+    })
+
     const deleteRateData = (id) => {
         if (window.confirm('Are you sure you want to delete?'))
             setRateData(rateData.filter((item) =>
@@ -37,6 +43,13 @@ export const RateProvider = ({children}) => {
         // state is immutable so we can't just push on to it we need to make a copy of it
     }
 
+    const editRate = (item) => {
+        setRateEdit({
+            item,
+            edit: true
+        })
+    }
+
 
     return (
         <RateContext.Provider value={{
@@ -45,7 +58,8 @@ export const RateProvider = ({children}) => {
             deleteRateData,
             addRate,
             reverse,
-            setReverse
+            setReverse,
+            editRate
         }}>
             {/*whatever we wrap. which is the children that we passed in*/}
             {children}
