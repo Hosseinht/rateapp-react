@@ -6,7 +6,6 @@ import RateContext from "../context/RateContext";
 
 const RateList = () => {
     const {rateData} = useContext(RateContext)
-    console.log(rateData)
 
     if (!rateData || rateData.length === 0) {
         return <p>No rate yet</p>

@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import {useContext, useState, useEffect} from "react";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
@@ -8,13 +8,25 @@ import RateContext from "../context/RateContext";
 const RateForm = ({select}) => {
     // whatever we type in input we want it to put in tex. so onChange={handleTextChange}
 
-    const {addRate} = useContext(RateContext)
+    const {addRate, rateEdit} = useContext(RateContext)
 
+    // whenever we click on edit we want something to happen. we want the form to get the
+    // text and rating from the current rating item. that's called an effect or side effect in the way
+    // that we deal with side effects with functional components and
+    // hooks is with a special hook called useEffect
 
     const [text, setText] = useState('')
     const [rating, setRating] = useState(10)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        if (rateEdit.edit === true) {
+            setBtnDisabled(false)
+            setText(rateEdit.item.text)
+            setRating(rateEdit.item.rating)
+        }
+    }, [rateEdit])
 
     const handleTextChange = (e) => {
         if (text === '') {
@@ -75,7 +87,6 @@ const RateForm = ({select}) => {
 };
 
 export default RateForm;
-
 
 
 // const RateForm = ({select, handleAdd}) => {

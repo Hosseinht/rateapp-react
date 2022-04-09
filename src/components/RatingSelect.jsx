@@ -1,7 +1,13 @@
-import {useState} from "react";
+import {useContext, useState, useEffect} from "react";
+import RateContext from "../context/RateContext";
 
 const RatingSelect = ({select}) => {
     const [selected, setSelected] = useState(10)
+    const {rateEdit} = useContext(RateContext)
+
+    useEffect(() => {
+        setSelected(rateEdit.item.rating)
+    }, [rateEdit])
 
     const handleChange = (e) => {
         setSelected(+e.currentTarget.value)

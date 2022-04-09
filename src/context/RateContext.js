@@ -59,7 +59,8 @@ export const RateProvider = ({children}) => {
             addRate,
             reverse,
             setReverse,
-            editRate
+            editRate,
+            rateEdit,
         }}>
             {/*whatever we wrap. which is the children that we passed in*/}
             {children}
