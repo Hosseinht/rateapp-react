@@ -8,7 +8,7 @@ import RateContext from "../context/RateContext";
 const RateForm = ({select}) => {
     // whatever we type in input we want it to put in tex. so onChange={handleTextChange}
 
-    const {addRate, rateEdit} = useContext(RateContext)
+    const {addRate, rateEdit, updateRate} = useContext(RateContext)
 
     // whenever we click on edit we want something to happen. we want the form to get the
     // text and rating from the current rating item. that's called an effect or side effect in the way
@@ -59,7 +59,11 @@ const RateForm = ({select}) => {
                 rating
             }
             // now we need to call a function in app level
-            addRate(newRate)
+            if (rateEdit.edit === true) {
+                updateRate(rateEdit.item.id, newRate)
+            } else {
+                addRate(newRate)
+            }
             setText('')
         }
     }

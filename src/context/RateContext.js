@@ -50,16 +50,26 @@ export const RateProvider = ({children}) => {
         })
     }
 
+    // Update rate
+    const updateRate = (id, updItem) => {
+        setRateData(rateData.map((item) => (
+            item.id === id ? {...item, ...updItem} : item
+        )))
+        // return an array with the newly updated rate
+        // id id match do what you need to do if not return the current item
+    }
+
 
     return (
         <RateContext.Provider value={{
             // rateData:rateData,
-            rateData,
             deleteRateData,
             addRate,
+            editRate,
+            updateRate,
+            rateData,
             reverse,
             setReverse,
-            editRate,
             rateEdit,
         }}>
             {/*whatever we wrap. which is the children that we passed in*/}
