@@ -2,15 +2,16 @@ import {useContext} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import RateItem from "./RateItem";
 import RateContext from "../context/RateContext";
+import Spinner from "./shared/Spinner";
 
 
 const RateList = () => {
-    const {rateData} = useContext(RateContext)
+    const {rateData, isLoading} = useContext(RateContext)
 
-    if (!rateData || rateData.length === 0) {
+    if (!isLoading && (!rateData || rateData.length === 0)) {
         return <p>No rate yet</p>
     }
-    return (
+    return isLoading ? <Spinner/> : (
         <div className='feedback-list'>
             <AnimatePresence>
                 {rateData.map((item) => (
@@ -28,7 +29,8 @@ const RateList = () => {
                 ))}
             </AnimatePresence>
         </div>
-    );
+    )
+
     // return (
     //     <div className='feedback-list'>
     //         {rateData.map((item) => (

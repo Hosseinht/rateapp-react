@@ -38,7 +38,7 @@ export const RateProvider = ({children}) => {
     }, [])
 
     const fetchRateData = async () => {
-        const response = await fetch(`http://localhost:5000/rateData?_sort=id&_order=desc`)
+        const response = await fetch(`/rateData?_sort=id&_order=desc`)
         const data = await response.json()
         setRateData(data)
         setIsLoading(false)
