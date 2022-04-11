@@ -51,11 +51,26 @@ export const RateProvider = ({children}) => {
             ))
     }
 
-    const addRate = (newRate) => {
-        newRate.id = uuidv4()
-        setRateData([newRate, ...rateData])
+    const addRate = async (newRate) => {
+        const response = await fetch('/rateData', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newRate)
+        })
+        const data = await response.json()
+        setRateData([data, ...rateData])
         // state is immutable so we can't just push on to it we need to make a copy of it
     }
+
+    // const addRate = (newRate) => {
+    //     newRate.id = uuidv4()
+    //     setRateData([newRate, ...rateData])
+    //     // state is immutable so we can't just push on to it we need to make a copy of it
+    // }
+    //
+    //
 
     const editRate = (item) => {
         setRateEdit({
