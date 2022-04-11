@@ -44,12 +44,22 @@ export const RateProvider = ({children}) => {
         setIsLoading(false)
     }
 
-    const deleteRateData = (id) => {
+    const deleteRateData = async (id) => {
         if (window.confirm('Are you sure you want to delete?'))
+            await fetch(`/rateData/${id}`, {
+                method: 'DELETE'
+            })
             setRateData(rateData.filter((item) =>
                 item.id !== id
             ))
     }
+    // const deleteRateData = (id) => {
+    //     if (window.confirm('Are you sure you want to delete?'))
+    //         setRateData(rateData.filter((item) =>
+    //             item.id !== id
+    //         ))
+    // }
+    //
 
     const addRate = async (newRate) => {
         const response = await fetch('/rateData', {
@@ -58,6 +68,7 @@ export const RateProvider = ({children}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newRate)
+            // JSON.stringify converts a javascript object or value to a JSON string
         })
         const data = await response.json()
         setRateData([data, ...rateData])
@@ -80,14 +91,29 @@ export const RateProvider = ({children}) => {
     }
 
     // Update rate
-    const updateRate = (id, updItem) => {
+    const updateRate = async (id, updItem) => {
+        const response = await fetch(`/rateData/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body : JSON.stringify(updItem)
+        })
+        const data = await response.json()
         setRateData(rateData.map((item) => (
-            item.id === id ? {...item, ...updItem} : item
+            item.id === id ? {...item, ...data} : item
         )))
         // return an array with the newly updated rate
         // id id match do what you need to do if not return the current item
     }
-
+    // const updateRate = (id, updItem) => {
+    //     setRateData(rateData.map((item) => (
+    //         item.id === id ? {...item, ...updItem} : item
+    //     )))
+    //     // return an array with the newly updated rate
+    //     // id id match do what you need to do if not return the current item
+    // }
+    //
 
     return (
         <RateContext.Provider value={{
